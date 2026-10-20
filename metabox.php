@@ -90,7 +90,7 @@ function mio_plugin_mostra_metabox( $post ) {
       <p><strong> PERSONAL TAG </strong></p>
       <p>
         <label for="personal_tag"><strong> personal tag </strong></label><br>
-        <textarea id="personal_tag" name="personal_tag" rows="3" style="width:100%;"><?php echo esc_kses($personal_tag) ; ?></textarea>
+        <textarea id="personal_tag" name="personal_tag" rows="3" style="width:100%;"><?php echo esc_textarea($personal_tag) ; ?></textarea>
       </p> 
 
 
