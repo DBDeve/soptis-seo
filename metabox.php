@@ -145,11 +145,25 @@ function mio_plugin_salva_metabox( $post_id ) {
     }
     
     if ( isset( $_POST['personal_tag'] ) ) {
-        $val = sanitize_text_field(wp_unslash( $_POST['personal_tag'] ) );
+        // Definiamo quali tag HTML e attributi sono permessi nella textarea
+        $allowed_tags = array(
+            'meta' => array(
+                'name'    => true,
+                'content' => true,
+                'id'      => true,
+                'property'=> true,
+            ),
+            'p' => array(), // Permette anche i tag <p>
+        );
+
+        // Sanifichiamo usando le regole appena create
+        $val = wp_kses( wp_unslash( $_POST['personal_tag'] ), $allowed_tags );
+        
         update_post_meta( $post_id, '_meta_personal_tag', $val );
     } else {
         delete_post_meta( $post_id, '_meta_personal_tag' );
     }
+
 }
 add_action( 'save_post', 'mio_plugin_salva_metabox' );
 
