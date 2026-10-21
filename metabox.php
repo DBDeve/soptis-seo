@@ -109,9 +109,10 @@ function mio_plugin_salva_metabox( $post_id ) {
     }
 
     // Controllo nonce
-    if ( ! isset( $_POST['mio_plugin_nonce'] ) || ! wp_verify_nonce( wp_unslash($_POST['mio_plugin_nonce']), 'mio_plugin_salva_metabox' ) ) {
-        return;
-    }
+    if ( ! isset( $_POST['mio_plugin_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['mio_plugin_nonce'] ) ), 'mio_plugin_salva_metabox' ) ) {
+		return;
+	}
+
 
     // Permessi
     if ( ! current_user_can( 'edit_post', $post_id ) ) {
@@ -189,7 +190,7 @@ function soptis_custom_robots( $robots ) {
 
     $post_id = get_queried_object_id();
     $robots_tag = get_post_meta( $post_id, '_meta_robots_value', true );
-    if ( (! empty( $robots_tag  )) && $robots_tag===true ) {
+    if ( (! empty( $robots_tag  )) && $robots_tag==="1" ) {
         $robots['index'] = true;
         $robots['follow'] = true;
     } else {
