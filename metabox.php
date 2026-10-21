@@ -80,9 +80,8 @@ function mio_plugin_mostra_metabox( $post ) {
       <br>
       <p><strong>ROBOTS</strong></p>
       <fieldset>
-        <legend>Index</legend>
-        <label><input type="radio" name="robots_value" value="true" <?php checked( $robots_raw, true ); ?> /> index</label>
-        <label><input type="radio" name="robots_value" value="false" <?php checked( $robots_raw, false ); ?> /> noindex</label>
+        <label><input type="radio" name="robots_value" value="true" <?php checked( $robots_raw, true ); ?> /> index, follow </label> <br>
+        <label><input type="radio" name="robots_value" value="false" <?php checked( $robots_raw, false ); ?> /> noindex, nofollow </label>
       </fieldset>
 
       <br>
@@ -139,7 +138,7 @@ function mio_plugin_salva_metabox( $post_id ) {
     }
     
     if ( isset( $_POST['robots_value'] ) ) {
-        $val = wp_validate_boolean( wp_unslash( $_POST['robots_value'] ) );
+        $val = wp_validate_boolean( sanitize_text_field( wp_unslash( $_POST['robots_value'] ) ) );
         update_post_meta( $post_id, '_meta_robots_value', $val );
     } else {
         delete_post_meta( $post_id, '_meta_robots_value' );
