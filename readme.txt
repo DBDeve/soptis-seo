@@ -1,5 +1,5 @@
 === Soptis SEO ===
-Contributors: DBDeve(Dario),
+Contributors: DBDeve
 Donate link:
 Tags: seo, meta, description, optimization
 Requires at least: 6.0
@@ -9,8 +9,10 @@ Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
+Easily add and modify custom metadata for pages.
+
 == Description ==
-Modifies or adds metadata to pages.
+Easily add and modify custom metadata for pages.
 
 == Installation ==
 1. Upload the plugin.

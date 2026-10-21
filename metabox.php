@@ -109,7 +109,7 @@ function mio_plugin_salva_metabox( $post_id ) {
     }
 
     // Controllo nonce
-    if ( ! isset( $_POST['mio_plugin_nonce'] ) || ! wp_verify_nonce( $_POST['mio_plugin_nonce'], 'mio_plugin_salva_metabox' ) ) {
+    if ( ! isset( $_POST['mio_plugin_nonce'] ) || ! wp_verify_nonce( wp_unslash($_POST['mio_plugin_nonce']), 'mio_plugin_salva_metabox' ) ) {
         return;
     }
 
