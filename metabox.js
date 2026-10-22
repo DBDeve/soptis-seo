@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var allowedChars = /^[A-Za-z0-9|\- ]+$/;
     if (!allowedChars.test(val)) {
-      errorDiv2.textContent = 'Nel titolo sono presenti caratteri pericolosi. ';
+      errorDiv2.textContent = 'il form è vuoto o contiene caratteri pericolosi. ';
       errorDiv2.style.display = 'block';
       error2=true;
     } else {
