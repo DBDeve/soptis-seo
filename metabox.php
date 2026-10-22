@@ -14,7 +14,6 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 // Aggiunge il metabox
 function mio_plugin_aggiungi_metabox() {
     add_meta_box(
@@ -63,10 +62,15 @@ function mio_plugin_mostra_metabox( $post ) {
                 echo 
                 '<p>
                     <label for="title_seo"><strong> title page </strong></label><br>
-                    <textarea id="title_seo" name="title_seo" rows="3" style="width:100%;">'
+                    <input type="text" id="titolo_seo" name="title_seo" rows="3" style="width:100%;">'
                     . esc_textarea( $title ) .
-                    '</textarea>
-                </p>';
+                    '</input>
+                </p>
+                <div id="titolo_seo_error_1" style="color:red; margin-top:4px; display:none;"></div>
+                <div id="titolo_seo_error_2" style="color:red; margin-top:4px; display:none;"></div>
+                
+                ';
+
             }
 
         ?>
@@ -229,14 +233,18 @@ function soptis_seo_output_meta_description() {
 }
 
 
-add_action( 'wp_enqueue_scripts', 'soptis_plugin_scripts' );
-function soptis_plugin_scripts() {
+function mio_plugin_enqueue_admin_js( $hook ) {
+  
+  if ( ! in_array( $hook, [ 'post.php', 'post-new.php' ], true ) ) {
+    return;
+  };
 
-    wp_enqueue_script(
-        'soptis-plugin-js',
-        plugins_url( 'js/metabox.js', __FILE__ ),
-        array('jquery'),
-        filemtime( plugin_dir_path(__FILE__) . 'js/metabox.js' ),
-        true
-    );
+  wp_enqueue_script(
+    'mio-plugin-admin',
+    plugin_dir_url( __FILE__ ) . 'metabox.js',
+    [],                              // nessuna dipendenza
+    filemtime( plugin_dir_path( __FILE__ ) . 'metabox.js' ),
+    true                             // carica in footer
+  );
 }
+add_action( 'admin_enqueue_scripts', 'mio_plugin_enqueue_admin_js' );
