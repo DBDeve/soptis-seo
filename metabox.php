@@ -14,6 +14,9 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+
+
+
 // Aggiunge il metabox
 function mio_plugin_aggiungi_metabox() {
     add_meta_box(
